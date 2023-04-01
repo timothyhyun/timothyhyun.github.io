@@ -1,1 +1,61 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Interconnection Network Simulator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Interconnection Network Simulator</h1>
+    </header>
+    
+	<nav>
+		
+			<a href="#">Final Report</a>
+			<a href="#">View on Github</a>
+		
+	</nav>
+	<section>
+		<h1>Project Proposal</h1>
+		<h2 id="names">Tony Yu and Timothy Hyun</h2>
+		<h2> Summary </h2> We will aim to produce an interconnection network simulator to assist in cache coherence simulation. The project will utilize the computer architecture simulator provided by Professor Railing, as well as some pre-existing code built on top of it previously written by Tony. Our goal is to allow for simulation of arbitrary interconnection network topologies, and to allow the user to specify a particular topology to be benchmarked.</p>
+    </section>
+    <section>
+		<h2>Background:</h2> We summarize the components of the simulator we will construct:<br>
+		• A specialized config file parser, which will allow the user to conveniently encode a commonly used or boutique interconnection network topology.<br>
+		• The interconnection network simulator: this will simulate the action of the interconnection network and all messages which pass through it for a given tracefile run. We will aim to support a directory-based coherence scheme and all messages necessary to simulate a directory-based coherence scheme. We hope to be able to extend our simulator to allow for virtual channel, as well as to properly simulate race conditions for messages which arrive at the same time.<br>
+		• APIs for the cache, processor, and coherence simulator as necessary will be implemented to allow for communication between all simulator components. This will be integral to the accuracy of our results.</p>
+	</section>
+    <section>
+        <h2>Resources:</h2> We will make use of Professor Railing’s computer architecture simulator, as well as prior work done by Tony on the same simulator interface. This work contains no progress towards an API for the interconnection network within the processor and the cache simulator. The cache coherence simulator is not configured to simulate eviction and invalidation. It is our hope that despite the large pre-existing code base we can expand dramatically on its functionality.</p>
+    </section>
+    <section>
+		<h2>Goals:</h2>
+		<p>We plan to finish the interconnection network simulator and enable it to support directory-based cache coherence schemes. This will entail implementing communication between the processors and caches, as well as between the caches and the interconnection network. It may also be necessary to program from scratch a memory controller unit simulator associated with the cache simulator. Beyond this, we hope that we will be able to simulate virtual channels and randomly simulate race conditions in the interconnection network to provide a greater sense of realism in our results.</p>
+		<p>At the poster session, we will be able to present the simulator for other students to test and use. They will be able to make their own network topologies and test them against our simulator.</p>
+		<p>We hope to analyze the differences in latency and bandwidth between different interconnection network topologies, using cache coherence traffic as a metric. We hope to determine, using the MSI coherence protocol, the characteristics of communication in different access patterns, (e.g. producer-consumer). And whether adversarial communication patterns exist.</p>
+	</section>
+
+	<!-- Main Section: Platform Choice -->
+	<section>
+		<h2>Platform Choice:</h2>
+		<p>We will be using the C programming language for this project, and we will do all testing on the CMU Linux Andrew machines. The Linux Andrew machines will provide the infrastructure needed to efficiently run multithreaded simulation code, which can be extremely slow if run on a computer that cannot handle the workload. Linux is also favorable for development using the pthreads library, which may be useful if we choose to parallelize the execution of the processor simulators.</p>
+	</section>
+
+	<!-- Main Section: Schedule -->
+	<section>
+		<h2>Schedule:</h2>
+		<ul>
+			<li>Week 1: populate starter code. Implement and test configuration parser. Begin implementing APIs for the interconnection network on the processor and cache simulators. Perform any debugging of prior work as necessary.</li>
+			<li>Week 2: Test and complete APIs for the interconnection network. Begin implementing the interconnection network.</li>
+			<li>Project Milestone: Be able to construct and represent a custom topology with the parser and associated data structures. Have working APIs with the interconnection network. Have a working prototype of the network simulator.</li>
+			<li>Week 3: Test and debug the interconnection network simulator. Implement the coherence simulator. Integrate the coherence simulator with the interconnection network.</li>
+			<li>Week 4: Implement memory control unit simulation either within the cache or as a separate component.</li>
+			<li>Week 5: Time allotted for debugging the entire system, in particular the processor/cache/interconnection network communication pipeline.</li>
+		</ul>
+		<p>The rationale behind implementing the network and its APIs first is that this is the bulk of the project – we want to ensure that messages correctly move through the system before we implement any other infrastructure on top of it.</p>
+	</section>
+
+</body>
+</html>
